@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#04060c">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Worldwound Catalogue</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="breakdown.css">
+  <link rel="stylesheet" href="zoom.css">
+  <link rel="stylesheet" href="upload.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="icon-btn back" id="back" aria-label="Back" hidden>
+      <svg viewBox="0 0 24 24" width="22" height="22"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <h1 id="title">Worldwound</h1>
+    <span class="sync" id="sync" title="Sync status"></span>
+    <a class="icon-btn" href="#/settings" aria-label="Settings">
+      <svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.8v2.6M12 18.6v2.6M2.8 12h2.6M18.6 12h2.6M5.5 5.5l1.8 1.8M16.7 16.7l1.8 1.8M5.5 18.5l1.8-1.8M16.7 7.3l1.8-1.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </a>
+  </header>
+
+  <main id="view" tabindex="-1"></main>
+
+  <a class="fab" id="fab" href="#" aria-label="Add" hidden>
+    <svg viewBox="0 0 24 24" width="26" height="26"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+  </a>
+
+  <nav class="tabbar" id="tabbar">
+    <a href="#/cards" data-tab="cards"><span class="ti"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="4" y="6.5" width="11" height="14.5" rx="1.5"/><path d="M8.5 3.5h9A1.5 1.5 0 0 1 19 5v12.5"/></svg></span>Cards</a>
+    <a href="#/ships" data-tab="ships" hidden><span class="ti"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2.5l3.6 8.6 4.9 3.4v3.2l-4.9-1.3-1 2.8H9.4l-1-2.8-4.9 1.3v-3.2l4.9-3.4z"/><path d="M12 8v6"/></svg></span>Ships</a>
+    <a href="#/enemies" data-tab="enemies" hidden><span class="ti"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 21.5l-3.6-8.6-4.9-3.4V6.3l4.9 1.3 1-2.8h5.2l1 2.8 4.9-1.3v3.2l-4.9 3.4z"/><path d="M9.5 10.5h5"/></svg></span>Enemies</a>
+    <a href="#/relics" data-tab="relics" hidden><span class="ti"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3l7 6.5-7 11.5L5 9.5z"/><path d="M5 9.5h14"/></svg></span>Relics</a>
+    <a href="#/routes" data-tab="routes" hidden><span class="ti"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="5" cy="18" r="2"/><circle cx="19" cy="6" r="2"/><path d="M7 18h5a3 3 0 0 0 0-6 3 3 0 0 1 0-6h5"/></svg></span>Routes</a>
+    <a href="#/encounters" data-tab="encounters"><span class="ti"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></span>Encounters</a>
+    <a href="#/archetypes" data-tab="archetypes"><span class="ti"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3l7.8 4.5v9L12 21l-7.8-4.5v-9z"/><path d="M4.2 7.5L12 12l7.8-4.5M12 12v9"/></svg></span>Archetypes</a>
+    <a href="#/notes" data-tab="notes"><span class="ti"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M9 11h7M9 15h7M9 7h3"/></svg></span>Notes</a>
+    <a href="#/changes" data-tab="changes"><span class="ti"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 20h4L19.5 8.5l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg></span>Changes<b class="badge" id="badge" hidden></b></a>
+  </nav>
+
+  <div class="editor" id="editor" hidden>
+    <div class="editor-panel" role="dialog" aria-modal="true" aria-labelledby="editor-title">
+      <header class="editor-head">
+        <h2 id="editor-title"></h2>
+        <button class="icon-btn" data-act="cancel" aria-label="Close">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </button>
+      </header>
+      <div class="editor-body" id="editor-body"></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal" id="modal" hidden></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
